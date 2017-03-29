@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
     styleUrls: [ 'app.component.css'],
     moduleId: module.id
 })
-export class AppComponent { name = 'Angular 2'; }
+export class AppComponent { title = 'DBJ'; }

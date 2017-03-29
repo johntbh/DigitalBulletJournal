@@ -85,6 +85,10 @@
   <ItemGroup>
     <Content Include="app\app.component.css" />
     <Content Include="app\app.component.html" />
+    <Content Include="app\monthlylog.component.html" />
+    <Content Include="app\monthlylog.component.css" />
+    <Content Include="app\dailylog.component.html" />
+    <Content Include="app\dailylog.component.css" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="styles.css" />
@@ -121,6 +125,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app-routing.module.ts" />
+    <TypeScriptCompile Include="app\monthlylog.component.ts" />
+    <TypeScriptCompile Include="app\dailylog.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
   </ItemGroup>
   <PropertyGroup>
@@ -135,7 +142,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3276</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
