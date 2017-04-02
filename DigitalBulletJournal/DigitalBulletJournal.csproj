@@ -126,6 +126,8 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app-routing.module.ts" />
+    <TypeScriptCompile Include="app\entry.ts" />
+    <TypeScriptCompile Include="app\mock-entry.ts" />
     <TypeScriptCompile Include="app\monthlylog.component.ts" />
     <TypeScriptCompile Include="app\dailylog.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
