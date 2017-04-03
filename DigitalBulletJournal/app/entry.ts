@@ -1,4 +1,4 @@
 ﻿export class Entry {
-    id: number;
+    _id: String;
     text: String;
 }

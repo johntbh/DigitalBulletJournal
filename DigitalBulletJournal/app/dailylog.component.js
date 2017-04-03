@@ -8,23 +8,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var mock_entry_1 = require('./mock-entry');
+var core_1 = require("@angular/core");
+var entry_service_1 = require("./entry.service");
+var mock_entry_1 = require("./mock-entry");
 var DailyLogComponent = (function () {
-    function DailyLogComponent() {
+    function DailyLogComponent(EntryService) {
+        this.EntryService = EntryService;
         this.text_placeholder = "Texte de votre entrée";
-        this.entries = mock_entry_1.ENTRIES;
     }
-    DailyLogComponent = __decorate([
-        core_1.Component({
-            selector: 'my-dailylog',
-            templateUrl: 'dailylog.component.html',
-            styleUrls: ['dailylog.component.css'],
-            moduleId: module.id
-        }), 
-        __metadata('design:paramtypes', [])
-    ], DailyLogComponent);
+    DailyLogComponent.prototype.ngOnInit = function () {
+        console.log(mock_entry_1.ENTRIES);
+        this.getEntries();
+    };
+    DailyLogComponent.prototype.getEntries = function () {
+        var _this = this;
+        this.EntryService.getEntries().then(function (entries) { return _this.entries = entries; });
+    };
     return DailyLogComponent;
 }());
+DailyLogComponent = __decorate([
+    core_1.Component({
+        selector: 'my-dailylog',
+        templateUrl: 'dailylog.component.html',
+        styleUrls: ['dailylog.component.css'],
+        moduleId: module.id,
+        providers: [entry_service_1.EntryService]
+    }),
+    __metadata("design:paramtypes", [entry_service_1.EntryService])
+], DailyLogComponent);
 exports.DailyLogComponent = DailyLogComponent;
 //# sourceMappingURL=dailylog.component.js.map

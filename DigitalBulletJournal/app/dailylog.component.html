@@ -2,8 +2,10 @@
 
 <div class="lines"></div>
 
-<ul class="list">
-    <li *ngFor="let entry of entries">
-        <input [(ngModel)]="entry.text" placeholder="{{text_placeholder}}" />
-    </li>
-</ul>
+<div *ngIf="entries">
+    <ul class="list">
+        <li *ngFor="let entry of entries">
+            <input [(ngModel)]="entry.text" placeholder="{{text_placeholder}}" />
+        </li>
+    </ul>
+</div>
