@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var entry_1 = require("./entry");
 var entry_service_1 = require("./entry.service");
 var mock_entry_1 = require("./mock-entry");
 var DailyLogComponent = (function () {
@@ -23,6 +24,15 @@ var DailyLogComponent = (function () {
     DailyLogComponent.prototype.getEntries = function () {
         var _this = this;
         this.EntryService.getEntries().then(function (entries) { return _this.entries = entries; });
+    };
+    DailyLogComponent.prototype.addEntry = function (text) {
+        var entry = new entry_1.Entry();
+        entry.text = text;
+        this.entries.push(entry);
+    };
+    DailyLogComponent.prototype.removeEntry = function (entry) {
+        var index = this.entries.indexOf(entry);
+        this.entries.splice(index, 1);
     };
     return DailyLogComponent;
 }());

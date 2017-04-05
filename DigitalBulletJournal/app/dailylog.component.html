@@ -5,7 +5,11 @@
 <div *ngIf="entries">
     <ul class="list">
         <li *ngFor="let entry of entries">
-            <input [(ngModel)]="entry.text" placeholder="{{text_placeholder}}" />
+            <input [(ngModel)]="entry.text" placeholder="{{text_placeholder}}" /><button (click)=removeEntry(entry)>X</button>
+        </li>
+        <li>
+            <input #newEntry type="text" placeholder="{{text_placeholder}}" />
         </li>
     </ul>
+    <button (click)=addEntry(newEntry.value)>Ajouter</button>
 </div>
