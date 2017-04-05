@@ -25,11 +25,13 @@ var DailyLogComponent = (function () {
         var _this = this;
         this.EntryService.getEntries().then(function (entries) { return _this.entries = entries; });
     };
+    // TODO: Ajouter au serveur MongoDB
     DailyLogComponent.prototype.addEntry = function (text) {
         var entry = new entry_1.Entry();
         entry.text = text;
         this.entries.push(entry);
     };
+    // TODO: Supprimer du serveur MongoDB
     DailyLogComponent.prototype.removeEntry = function (entry) {
         var index = this.entries.indexOf(entry);
         this.entries.splice(index, 1);
