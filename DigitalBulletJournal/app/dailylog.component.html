@@ -6,7 +6,7 @@
     <ul class="list">
         <!-- Need to resize the input to wrap the content -->
         <li *ngFor="let entry of entries">
-            {{entry.id}} - <input [(ngModel)]="entry.text" placeholder="{{text_placeholder}}" /><button (click)=removeEntry(entry)>X</button>
+            {{entry._id}} - <input [(ngModel)]="entry.text" placeholder="{{text_placeholder}}" /><button (click)=removeEntry(entry)>X</button>
         </li>
         <li>
             <input #newEntry type="text" placeholder="{{text_placeholder}}" />

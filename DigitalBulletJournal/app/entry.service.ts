@@ -34,12 +34,12 @@ export class EntryService {
         return this.http
             .post(this.entriesUrl, JSON.stringify(entry), { headers: this.headers })
             .toPromise()
-            .then(res => res.json() as Entry)
+            .then(res => JSON.parse(res.json()) as Entry)
             .catch(this.handleError);
     }
 
     deleteEntry(entry: Entry): Promise<void> {
-        const url = `${this.entriesUrl}/${entry.id}`;
+        const url = `${this.entriesUrl}/${entry._id}`;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(() => null)
@@ -47,7 +47,7 @@ export class EntryService {
     }
 
     updateEntry(entry: Entry): Promise<Entry> {
-        const url = `${this.entriesUrl}/${entry.id}`;
+        const url = `${this.entriesUrl}/${entry._id}`;
         return this.http
             .put(url, JSON.stringify(entry), { headers: this.headers })
             .toPromise()

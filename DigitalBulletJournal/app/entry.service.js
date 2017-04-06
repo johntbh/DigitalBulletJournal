@@ -33,18 +33,18 @@ var EntryService = (function () {
         return this.http
             .post(this.entriesUrl, JSON.stringify(entry), { headers: this.headers })
             .toPromise()
-            .then(function (res) { return res.json(); })
+            .then(function (res) { return JSON.parse(res.json()); })
             .catch(this.handleError);
     };
     EntryService.prototype.deleteEntry = function (entry) {
-        var url = this.entriesUrl + "/" + entry.id;
+        var url = this.entriesUrl + "/" + entry._id;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(function () { return null; })
             .catch(this.handleError);
     };
     EntryService.prototype.updateEntry = function (entry) {
-        var url = this.entriesUrl + "/" + entry.id;
+        var url = this.entriesUrl + "/" + entry._id;
         return this.http
             .put(url, JSON.stringify(entry), { headers: this.headers })
             .toPromise()

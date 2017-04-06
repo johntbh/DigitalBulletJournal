@@ -1,7 +1,7 @@
 "use strict";
 var Entry = (function () {
     function Entry() {
-        this.id = 0;
+        this._id = 0;
         this.text = "";
     }
     return Entry;

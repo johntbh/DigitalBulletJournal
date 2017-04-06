@@ -30,7 +30,10 @@ var DailyLogComponent = (function () {
         var _this = this;
         var entry = new entry_1.Entry();
         entry.text = text;
-        this.EntryService.addEntry(entry).then(function (entry) { return _this.entries.push(entry); });
+        this.EntryService.addEntry(entry).then(function (entry) {
+            console.log(entry);
+            _this.entries.push(entry);
+        });
     };
     // TODO: Supprimer du serveur MongoDB
     DailyLogComponent.prototype.removeEntry = function (entry) {

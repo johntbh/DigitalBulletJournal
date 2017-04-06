@@ -1,0 +1,12 @@
+﻿<h4>Daily</h4>
+
+<div class="lines"></div>
+
+<ul class="list">
+
+	<li *ngFor="let entree of listeEntree">
+		{{entree}} <button (click)=supprimmerEntree(entree)> X </button>
+	</li>
+	<input #nouvelleEntree type="text" placeholder="ajout d'une entrée"> 
+	<Button (click)=ajoutEntree(nouvelleEntree.value)>Ajouter</Button>
+</ul>

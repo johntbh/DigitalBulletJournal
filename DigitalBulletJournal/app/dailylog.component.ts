@@ -32,7 +32,10 @@ export class DailyLogComponent {
         var entry = new Entry();
         entry.text = text;
 
-        this.EntryService.addEntry(entry).then(entry => this.entries.push(entry));
+        this.EntryService.addEntry(entry).then(entry => {
+            console.log(entry);
+            this.entries.push(entry);
+        });
     }
 
     // TODO: Supprimer du serveur MongoDB

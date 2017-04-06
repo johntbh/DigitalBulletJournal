@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using DigitalBulletJournal.Models;
 
 namespace DigitalBulletJournal.App_Start
 {
@@ -22,8 +23,7 @@ namespace DigitalBulletJournal.App_Start
         [Route("")]
         public String Get()
         {
-            var fields = Builders<BsonDocument>.Projection.Exclude("_id");
-            var documents = db.Posts.Find(new BsonDocument()).Project<BsonDocument>(fields).ToList();
+            var documents = db.Posts.Find(new BsonDocument()).ToList();
             return documents.ToJson();
         }
 
@@ -36,16 +36,22 @@ namespace DigitalBulletJournal.App_Start
 
         // POST: api/entries
         [Route("")]
-        public void Post([FromBody]string value)
+        public String Post(HttpRequestMessage test)
         {
-            var sort = Builders<BsonDocument>.Sort.Descending("id");
+            var sort = Builders<BsonDocument>.Sort.Descending("_id");
             var documentid = db.Posts.Find<BsonDocument>(new BsonDocument()).Sort(sort).FirstOrDefault();
 
-            var obj = JsonConvert.DeserializeObject(value);
-            var document = BsonDocument.Create(obj);
+            var content = test.Content.ReadAsStringAsync().Result;
 
-            document["id"] = (int)documentid["id"] + 1;
+            //var obj = JsonConvert.DeserializeObject(content);
+            Entry obj = JsonConvert.DeserializeObject<Entry>(content);
+            obj.id = (int) documentid["_id"] + 1; 
+
+            var document = obj.ToBsonDocument();
+
             db.Posts.InsertOne(document);
+
+            return document.ToJson();
         }
 
         // PUT: api/entries/5
