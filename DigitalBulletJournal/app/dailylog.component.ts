@@ -31,12 +31,16 @@ export class DailyLogComponent {
     addEntry(text: string) {
         var entry = new Entry();
         entry.text = text;
-        this.entries.push(entry);
+
+        this.EntryService.addEntry(entry).then(entry => this.entries.push(entry));
     }
 
     // TODO: Supprimer du serveur MongoDB
     removeEntry(entry: Entry) {
-        var index = this.entries.indexOf(entry);
-        this.entries.splice(index, 1);
+
+        this.EntryService.deleteEntry(entry).then(() => {
+            var index = this.entries.indexOf(entry);
+            this.entries.splice(index, 1);
+        });
     }
 }

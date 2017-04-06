@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Web.Query;
 using System.Net.Http;
 using System.Web.Http;
 
@@ -17,41 +18,54 @@ namespace DigitalBulletJournal.App_Start
     {
         MongoDBContext db = new MongoDBContext();
 
-        // GET: api/Entry
+        // GET: api/entries
         [Route("")]
         public String Get()
         {
-            var documents = db.Posts.Find(new BsonDocument()).ToList();
-            foreach( var document in documents)
-            {
-                document["_id"] = document["_id"].ToString();
-            }
+            var fields = Builders<BsonDocument>.Projection.Exclude("_id");
+            var documents = db.Posts.Find(new BsonDocument()).Project<BsonDocument>(fields).ToList();
             return documents.ToJson();
         }
 
-        // GET: api/Entry/5
+        // GET: api/entries/5
         [Route("{id:int}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Entry
+        // POST: api/entries
         [Route("")]
         public void Post([FromBody]string value)
         {
+            var sort = Builders<BsonDocument>.Sort.Descending("id");
+            var documentid = db.Posts.Find<BsonDocument>(new BsonDocument()).Sort(sort).FirstOrDefault();
+
+            var obj = JsonConvert.DeserializeObject(value);
+            var document = BsonDocument.Create(obj);
+
+            document["id"] = (int)documentid["id"] + 1;
+            db.Posts.InsertOne(document);
         }
 
-        // PUT: api/Entry/5
+        // PUT: api/entries/5
         [Route("{id:int}")]
         public void Put(int id, [FromBody]string value)
         {
+            var document = JsonConvert.DeserializeObject<BsonDocument>(value);
+
+            var query = Builders<BsonDocument>.Filter.Eq("id", id);
+            var set = Builders<BsonDocument>.Update.Set("text", document["text"]);
+
+            db.Posts.UpdateOne(query, set);
         }
 
-        // DELETE: api/Entry/5
+        // DELETE: api/entries/5
         [Route("{id:int}")]
         public void Delete(int id)
         {
+            var query = Builders<BsonDocument>.Filter.Eq("id", id);
+            db.Posts.DeleteOne(query);
         }
     }
 }

@@ -26,7 +26,29 @@ var EntryService = (function () {
         var url = this.entriesUrl + "/" + id;
         return this.http.get(url)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    EntryService.prototype.addEntry = function (entry) {
+        return this.http
+            .post(this.entriesUrl, JSON.stringify(entry), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    EntryService.prototype.deleteEntry = function (entry) {
+        var url = this.entriesUrl + "/" + entry.id;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(function () { return null; })
+            .catch(this.handleError);
+    };
+    EntryService.prototype.updateEntry = function (entry) {
+        var url = this.entriesUrl + "/" + entry.id;
+        return this.http
+            .put(url, JSON.stringify(entry), { headers: this.headers })
+            .toPromise()
+            .then(function () { return entry; })
             .catch(this.handleError);
     };
     EntryService.prototype.handleError = function (error) {

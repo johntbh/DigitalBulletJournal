@@ -27,14 +27,18 @@ var DailyLogComponent = (function () {
     };
     // TODO: Ajouter au serveur MongoDB
     DailyLogComponent.prototype.addEntry = function (text) {
+        var _this = this;
         var entry = new entry_1.Entry();
         entry.text = text;
-        this.entries.push(entry);
+        this.EntryService.addEntry(entry).then(function (entry) { return _this.entries.push(entry); });
     };
     // TODO: Supprimer du serveur MongoDB
     DailyLogComponent.prototype.removeEntry = function (entry) {
-        var index = this.entries.indexOf(entry);
-        this.entries.splice(index, 1);
+        var _this = this;
+        this.EntryService.deleteEntry(entry).then(function () {
+            var index = _this.entries.indexOf(entry);
+            _this.entries.splice(index, 1);
+        });
     };
     return DailyLogComponent;
 }());

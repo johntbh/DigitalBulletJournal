@@ -26,7 +26,32 @@ export class EntryService {
         const url = `${this.entriesUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Entry)
+            .then(response => response.json() as Entry)
+            .catch(this.handleError);
+    }
+
+    addEntry(entry: Entry): Promise<Entry> {
+        return this.http
+            .post(this.entriesUrl, JSON.stringify(entry), { headers: this.headers })
+            .toPromise()
+            .then(res => res.json() as Entry)
+            .catch(this.handleError);
+    }
+
+    deleteEntry(entry: Entry): Promise<void> {
+        const url = `${this.entriesUrl}/${entry.id}`;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
+
+    updateEntry(entry: Entry): Promise<Entry> {
+        const url = `${this.entriesUrl}/${entry.id}`;
+        return this.http
+            .put(url, JSON.stringify(entry), { headers: this.headers })
+            .toPromise()
+            .then(() => entry)
             .catch(this.handleError);
     }
 

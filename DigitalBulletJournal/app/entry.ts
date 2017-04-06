@@ -1,4 +1,9 @@
 ﻿export class Entry {
-    _id: String;
+    id: Number;
     text: String;
+
+    constructor() {
+        this.id = 0;
+        this.text = "";
+    }
 }
