@@ -9,19 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var DailyLogComponent = (function () {
-    function DailyLogComponent() {
+var FuturLogComponent = (function () {
+    function FuturLogComponent() {
+        this.avenirs = [
+            { signifiers: '/app/signifiers/etoile.jpg',
+                date: '02/04/2017',
+                entree: 'projet jee à rendre' },
+            { signifiers: '/app/signifiers/oeil.png',
+                date: '25/04/2017',
+                entree: 'Rapport projet'
+            },
+            { signifiers: '/app/signifiers/point.png',
+                date: '07/07/2017',
+                entree: ' Preparation soutenance projet'
+            }
+        ];
     }
-    DailyLogComponent = __decorate([
+    FuturLogComponent = __decorate([
         core_1.Component({
-            selector: 'my-dailylog',
-            templateUrl: 'dailylog.component.html',
-            styleUrls: ['dailylog.component.css'],
+            selector: 'my-futurlog',
+            templateUrl: 'futurlog.component.html',
+            styleUrls: ['futurlog.component.css'],
             moduleId: module.id
         }), 
         __metadata('design:paramtypes', [])
-    ], DailyLogComponent);
-    return DailyLogComponent;
+    ], FuturLogComponent);
+    return FuturLogComponent;
 }());
-exports.DailyLogComponent = DailyLogComponent;
-//# sourceMappingURL=dailylog.component.js.map
+exports.FuturLogComponent = FuturLogComponent;
+//# sourceMappingURL=futurlog.component.js.map

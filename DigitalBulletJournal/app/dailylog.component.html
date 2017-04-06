@@ -2,14 +2,16 @@
 
 <div class="lines"></div>
 
-<div *ngIf="entries">
-    <ul class="list">
-        <li *ngFor="let entry of entries">
-            <input [(ngModel)]="entry.text" placeholder="{{text_placeholder}}" /><button (click)=removeEntry(entry)>X</button>
-        </li>
-        <li>
-            <input #newEntry type="text" placeholder="{{text_placeholder}}" />
-        </li>
-    </ul>
-    <button (click)=addEntry(newEntry.value)>Ajouter</button>
-</div>
+<ul class="list">
+    <li>Eat Breakfeast Daily</li>
+    <li>Feed Pugsly, the cow</li>
+    <li>Sit Down</li>
+    <li>Eat lunch</li>
+    <li>Call mom</li>
+    <li>Tweet about feeding my cow, pugsly</li>
+    <li>Join a hangout in google+</li>
+    <li>Prepare Dinner</li>
+    <li>Eat Dinner</li>
+    <li>Get ready for bed</li>
+    <li>Go to bed</li>
+</ul>

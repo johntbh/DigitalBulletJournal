@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var DailyLogComponent = (function () {
-    function DailyLogComponent() {
+var FuturLogService = (function () {
+    function FuturLogService() {
     }
-    DailyLogComponent = __decorate([
-        core_1.Component({
-            selector: 'my-dailylog',
-            templateUrl: 'dailylog.component.html',
-            styleUrls: ['dailylog.component.css'],
-            moduleId: module.id
-        }), 
+    FuturLogService.prototype.getAllFuturs = function () {
+        return this.futurslogs;
+    };
+    FuturLogService.prototype.Ajouter = function (futurlog) {
+        this.futurslogs.push(futurlog);
+    };
+    FuturLogService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], DailyLogComponent);
-    return DailyLogComponent;
+    ], FuturLogService);
+    return FuturLogService;
 }());
-exports.DailyLogComponent = DailyLogComponent;
-//# sourceMappingURL=dailylog.component.js.map
+exports.FuturLogService = FuturLogService;
+//# sourceMappingURL=futurlog.service.js.map

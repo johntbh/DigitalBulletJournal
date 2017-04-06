@@ -1,0 +1,37 @@
+<h4>Futur</h4>
+<div class="lines"></div>
+<form #formCreate="ngForm" (ngSubmit)="Ajouter(formCreate.value)">
+<label for="signifiers">Signifiers</label>
+ <select name="signifiers" class="icon-menu">
+<option value= "app/signifiers/etoile.jpg">Priorité</option>
+<option value= "app/signifiers/oeil.png" >Explorer</option>
+<option value= "app/signifiers/point.png">Inspiration</option>
+ </select> <br>
+ <label for="date"> Date</label>
+<input type="date" name="date"><br>
+<label for="entree">Entree</label>
+<input type="text" name="entree" placeholder="Evenement a venir" ><br>
+<button type="submit">Ajouter</button>
+<style>
+  .logo{
+    width: 80px;
+    height: 60px;
+    
+  }
+  </style>
+</form>
+
+<table>
+  <tr>
+     <th>signifiers</th>
+    <th>Date</th>
+    <th>Entree</th>
+     </tr>
+ 
+<tr  *ngFor="let item of avenirs">
+ <td> <img class="logo" src="{{item.signifiers}}"></td>
+ <td> {{item.date}}</td>
+ <td> {{item.entree}}</td>
+
+</tr>
+    </table>
