@@ -5,12 +5,12 @@ import { DialogType } from './dialog.component';
 import { PickerService } from './picker.service';
 
 @Component({
-    selector: 'dialog-date-panel',
+    selector: 'dialog-calendar',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './date-panel.component.html',
-    styleUrls: ['./date-panel.component.scss'],
+    templateUrl: './calendar.component.html',
+    styleUrls: ['./calendar.component.scss'],
 })
-export class DatePanelComponent implements OnInit {
+export class CalendarComponent implements OnInit {
 
     @Input() public selectedMoment: Moment;
     @Output() public onCancelDialog = new EventEmitter<boolean>();
@@ -38,12 +38,12 @@ export class DatePanelComponent implements OnInit {
         this.dialogType = this.service.dtDialogType;
         this.mode = this.service.dtMode;
 
-        // set moment locale (default is en)
+        // Le format de la date (à anglaise par défaut : YYYY-MM-DD)
         moment.locale(this.locale);
 
-        // set week days name array
+        // Le nom des jours
         this.dayNames = moment.weekdaysShort(true);
-        // set month name array
+        // Le nom des mois
         this.monthList = moment.monthsShort();
 
         this.now = moment();
